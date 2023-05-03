@@ -3,5 +3,5 @@ if [[ -f ~/.profile ]]; then
 fi
 
 if [[ -f ~/.bashrc ]]; then
-  . ~/bashrc
+  . ~/.bashrc
 fi
