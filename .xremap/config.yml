@@ -1,0 +1,8 @@
+# A workaround for the Wayland bug: https://github.com/k0kubun/xremap/issues/179
+keypress_delay_ms: 20
+#
+keymap:
+  - name: Global
+    exact_match: true
+    remap:
+      CapsLock: Grave

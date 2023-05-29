@@ -1,0 +1,10 @@
+[Unit]
+Description = xremap daemon
+
+[Service]
+ExecStart = /usr/local/bin/xremap /usr/local/etc/xremap/config.yml
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
