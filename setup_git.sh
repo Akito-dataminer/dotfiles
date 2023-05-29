@@ -10,6 +10,11 @@ function ask_yes_or_no() {
   return 0
 }
 
+is_exist() {
+  command -v "$@" > /dev/null
+  echo $?
+}
+
 if hash git >/dev/null 2>&1; then
   echo "git is able to be executed."
 else
@@ -36,3 +41,17 @@ if [[ $? == 1 ]]; then
   git config --global init.defaultBranch main
   echo "Default branch is set to main"
 fi
+
+##########
+# change the default editor
+##########
+read -p "which editor do you want to use in git? - " SPECIFIED_EDITOR
+
+while [ 1 ]; do
+  if [ $(is_exist ${SPECIFIED_EDITOR}) -eq 0 ]; then break; fi
+
+  echo the editor is not installed.
+  read -p "which editor do you want to use in git? - " SPECIFIED_EDITOR
+done
+
+git config --global core.editor ${SPECIFIED_EDITOR}
