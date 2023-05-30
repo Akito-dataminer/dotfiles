@@ -69,6 +69,7 @@ INSTALL_URI=${ASSET_URI_ARRAY[${ORDERED_INDEX}]}
 
 wget ${INSTALL_URI}
 unzip ${INSTALL_URI##*/}
+rm ${INSTALL_URI##*/}
 
 sudo chmod 750 xremap
 
@@ -76,7 +77,8 @@ sudo chmod 750 xremap
 # config xremap( copy config files for xremap to some directries )
 ####################
 sudo mkdir -p /usr/local/etc/xremap
-sudo mv .xremap/config.yml /usr/local/etc/xremap/config.yml
+sudo cp .xremap/config.yml /usr/local/etc/xremap/config.yml
+sudo cp .xremap/xremap.service /etc/systemd/system/xremap.service
 
 sudo mv xremap /usr/local/bin/
 sudo systemctl enable xremap
