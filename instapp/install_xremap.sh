@@ -32,6 +32,16 @@ fi
 ####################
 XREMAP_URI="k0kubun/xremap"
 TMP_FILE=/tmp/xremap_install
+
+CURL_EXIST=`is_exist jq`
+
+if [ ${CURL_EXIST} -ne 0 ]; then
+  echo curl is not installed.
+  echo install curl
+  sudo apt install -y curl
+  echo the installation has been finished.
+fi
+
 curl -sL -H "Accept: application/vnd.github+json" https://api.github.com/repos/${XREMAP_URI}/releases/latest --output "${TMP_FILE}"
 
 CURRENT_VERSION=$(cat ${TMP_FILE} | jq -r .tag_name)
