@@ -1,0 +1,3 @@
+[submodule ".cpp_skeleton"]
+	path = .cpp_skeleton
+	url = https://github.com/Akito-dataminer/.cpp_skeleton
