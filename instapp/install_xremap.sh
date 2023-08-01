@@ -33,7 +33,7 @@ fi
 XREMAP_URI="k0kubun/xremap"
 TMP_FILE=/tmp/xremap_install
 
-CURL_EXIST=`is_exist jq`
+CURL_EXIST=`is_exist curl`
 
 if [ ${CURL_EXIST} -ne 0 ]; then
   echo curl is not installed.
