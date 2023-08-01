@@ -1,10 +1,5 @@
 #!/bin/bash
 
-is_exist() {
-  command -v "$@" > /dev/null
-  echo $?
-}
-
 function ask_yes_or_no() {
   read -p "$1" YES_OR_NO
 
@@ -18,9 +13,9 @@ function ask_yes_or_no() {
 ####################
 # install jq to install xremap, if it is not exist
 ####################
-JQ_EXIST=`is_exist jq`
+JQ_EXIST=`sh ./helper/is_exist.sh jq`
 
-if [ ${JQ_EXIST} -ne 0 ]; then
+if [ ${JQ_EXIST} == "" ]; then
   echo jq is not installed.
   echo install jq
   sudo apt install -y jq
@@ -33,9 +28,9 @@ fi
 XREMAP_URI="k0kubun/xremap"
 TMP_FILE=/tmp/xremap_install
 
-CURL_EXIST=`is_exist curl`
+CURL_EXIST=`sh ./helper/is_exist.sh curl`
 
-if [ ${CURL_EXIST} -ne 0 ]; then
+if [ ${CURL_EXIST} == "" ]; then
   echo curl is not installed.
   echo install curl
   sudo apt install -y curl
