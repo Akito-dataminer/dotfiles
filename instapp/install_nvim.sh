@@ -7,12 +7,12 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
-sudo apt install libfuse-dev
+sudo apt-get install -y libfuse-dev
 
 ####################
 # install deno
 ####################
-sudo apt install unzip # unzip is needed by script to install deno.
+sudo apt-get install -y unzip # unzip is needed by script to install deno.
 
 curl -fsSL https://deno.land/x/install/install.sh | sh
 
@@ -23,7 +23,7 @@ ln -snfv ~/dotfiles/.profile ~/
 # install npm
 # Reference: https://www.softel.co.jp/blogs/tech/archives/6487
 ####################
-sudo apt -y install nodejs npm
+sudo apt-get -y install nodejs npm
 
 sudo npm install -g n
 sudo n stable
