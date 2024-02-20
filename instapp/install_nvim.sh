@@ -3,9 +3,14 @@
 ####################
 # install Neovim
 ####################
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage # ref: https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
-chmod u+x nvim.appimage
-mv nvim.appimage /usr/local/bin/nvim
+curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+
+tar -zxvf nvim-linux64.tar.gz
+mv nvim-linux64/bin/nvim /usr/bin/nvim
+mv nvim-linux64/lib/nvim /usr/lib/nvim
+mv nvim-linux64/share/nvim/ /usr/share/nvim
+rm -rf nvim-linux64
+rm nvim-linux64.tar.gz
 
 sudo apt-get install -y libfuse-dev
 
