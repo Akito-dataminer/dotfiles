@@ -32,8 +32,8 @@ sudo apt-get -y install nodejs npm
 
 sudo npm install -g n
 sudo n stable
-sudo apt purge -y nodejs npm
-sudo apt autoremove -y
+sudo apt-get purge -y nodejs npm
+sudo apt-get autoremove -y
 
 echo installed npm version: $(npm -v)
 echo installed node.js version: $(node -v)
