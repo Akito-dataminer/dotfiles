@@ -5,7 +5,7 @@
 ####################
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 
-tar -zxvf nvim-linux64.tar.gz
+tar -zxf nvim-linux64.tar.gz
 mv nvim-linux64/bin/nvim /usr/bin/nvim
 mv nvim-linux64/lib/nvim /usr/lib/nvim
 mv nvim-linux64/share/nvim/ /usr/share/nvim
