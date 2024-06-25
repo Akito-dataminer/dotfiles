@@ -55,3 +55,4 @@ while [ 1 ]; do
 done
 
 git config --global core.editor ${SPECIFIED_EDITOR}
+git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
