@@ -3,14 +3,20 @@
 ####################
 # install Neovim
 ####################
-curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+NVIM_NAME="nvim-linux-x86_64"
+NVIM_ASSET=${NVIM_NAME}".tar.gz"
+NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | \
+  grep -oP "browser_download_url.*\Khttps://.*${NVIM_ASSET}" | head -n1)
 
-tar -zxf nvim-linux64.tar.gz
-mv nvim-linux64/bin/nvim /usr/bin/nvim
-mv nvim-linux64/lib/nvim /usr/lib/nvim
-mv nvim-linux64/share/nvim/ /usr/share/nvim
-rm -rf nvim-linux64
-rm nvim-linux64.tar.gz
+curl -LO $NVIM_URL
+
+tar -zxf $NVIM_ASSET
+cp -r ${NVIM_NAME}/bin/nvim /usr/bin/nvim
+ln -s /usr/bin/nvim /usr/local/bin/nvim
+cp -r ${NVIM_NAME}/lib/nvim /usr/local/lib/nvim
+cp -r ${NVIM_NAME}/share/nvim /usr/local/share/nvim
+rm -rf ${NVIM_NAME}
+rm ${NVIM_ASSET}
 
 sudo apt-get install -y libfuse-dev
 
