@@ -12,11 +12,12 @@ curl -LO $NVIM_URL
 
 tar -zxf $NVIM_ASSET
 cp -r ${NVIM_NAME}/bin/nvim /usr/bin/nvim
-ln -s /usr/bin/nvim /usr/local/bin/nvim
 cp -r ${NVIM_NAME}/lib/nvim /usr/local/lib/nvim
 cp -r ${NVIM_NAME}/share/nvim /usr/local/share/nvim
 rm -rf ${NVIM_NAME}
 rm ${NVIM_ASSET}
+
+ln -s /usr/bin/nvim /usr/local/bin/nvim
 
 sudo apt-get install -y libfuse-dev
 
