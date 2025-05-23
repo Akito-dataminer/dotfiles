@@ -17,7 +17,9 @@ cp -r ${NVIM_NAME}/share/nvim /usr/local/share/nvim
 rm -rf ${NVIM_NAME}
 rm ${NVIM_ASSET}
 
-ln -s /usr/bin/nvim /usr/local/bin/nvim
+if [ ! -f /usr/local/bin/nvim ]; then
+  ln -s /usr/bin/nvim /usr/local/bin/nvim
+fi
 
 sudo apt-get install -y libfuse-dev
 
