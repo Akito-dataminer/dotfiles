@@ -23,11 +23,14 @@ trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
 package="${tmp}/${NVIM_ASSET}"
 
+echo "[1/3] Downloading: ${NVIM_ASSET}"
 curl -fL -o "${package}" "${NVIM_BASE_DL}/${NVIM_ASSET}"
 
+echo "[2/3] Installing to: ${OPT_DIR}"
 sudo rm -rf "$OPT_DIR"
 sudo tar -C /opt -xzf "$package"
 
+echo "[3/3] Updating symlink: ${SYMLINK} -> ${OPT_DIR}/bin/nvim"
 sudo mkdir -p "$(dirname "$SYMLINK")"
 sudo ln -sfn "${OPT_DIR}/bin/nvim" "$SYMLINK"
 
