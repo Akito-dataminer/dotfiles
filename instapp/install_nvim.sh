@@ -29,10 +29,7 @@ sudo rm -rf "$OPT_DIR"
 sudo tar -C /opt -xzf "$package"
 
 sudo mkdir -p "$(dirname "$SYMLINK")"
-
-if [ ! -f /usr/local/bin/nvim ]; then
-  sudo ln -sn "${OPT_DIR}/bin/nvim" "$SYMLINK"
-fi
+sudo ln -sfn "${OPT_DIR}/bin/nvim" "$SYMLINK"
 
 sudo apt-get install -y libfuse-dev
 
