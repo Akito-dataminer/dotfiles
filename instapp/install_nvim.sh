@@ -13,14 +13,23 @@ NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | 
 OPT_DIR="/opt/nvim-linux-x86_64"
 SYMLINK="/usr/local/bin/nvim"
 
-curl -LO $NVIM_URL
+tmp="$(mktemp -d "/tmp/installing_neovim.tmp.XXXXXX")"
+cleanup() {
+  if [[ -d "${tmp}" ]]; then
+    rm -rf "$tmp"
+  fi
+}
+trap cleanup EXIT
+trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
+
+package="${tmp}/${NVIM_ASSET}"
+
+curl -fL -o "${package}" "$NVIM_URL"
 
 sudo rm -rf "$OPT_DIR"
-sudo tar -C /opt -xzf "$NVIM_ASSET"
+sudo tar -C /opt -xzf "$package"
 
 sudo mkdir -p "$(dirname "$SYMLINK")"
-rm -rf ${NVIM_NAME}
-rm ${NVIM_ASSET}
 
 if [ ! -f /usr/local/bin/nvim ]; then
   sudo ln -sn "${OPT_DIR}/bin/nvim" "$SYMLINK"
