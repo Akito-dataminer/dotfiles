@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [ "$(id -u)" -ne 0 ]; then
+    echo "[Error] This script requires root privileges. Please run it with sudo." >&2
+    exit 1
+fi
+
 ####################
 # install Neovim
 ####################
