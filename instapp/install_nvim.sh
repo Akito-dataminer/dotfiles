@@ -6,8 +6,8 @@ set -euo pipefail
 # install Neovim
 ####################
 NVIM_ASSET="nvim-linux-x86_64.tar.gz"
-NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | \
-  grep -oP "browser_download_url.*\Khttps://.*${NVIM_ASSET}" | head -n1)
+NVIM_REPO="neovim/neovim"
+NVIM_BASE_DL="https://github.com/${NVIM_REPO}/releases/latest/download"
 
 OPT_DIR="/opt/nvim-linux-x86_64"
 SYMLINK="/usr/local/bin/nvim"
@@ -23,7 +23,7 @@ trap 'rc=$?; trap - EXIT; atexit; exit $?' INT PIPE TERM
 
 package="${tmp}/${NVIM_ASSET}"
 
-curl -fL -o "${package}" "$NVIM_URL"
+curl -fL -o "${package}" "${NVIM_BASE_DL}/${NVIM_ASSET}"
 
 sudo rm -rf "$OPT_DIR"
 sudo tar -C /opt -xzf "$package"
