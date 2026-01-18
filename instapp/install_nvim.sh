@@ -5,8 +5,7 @@ set -euo pipefail
 ####################
 # install Neovim
 ####################
-NVIM_NAME="nvim-linux-x86_64"
-NVIM_ASSET=${NVIM_NAME}".tar.gz"
+NVIM_ASSET="nvim-linux-x86_64.tar.gz"
 NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | \
   grep -oP "browser_download_url.*\Khttps://.*${NVIM_ASSET}" | head -n1)
 
