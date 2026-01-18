@@ -41,6 +41,10 @@ sudo ln -sfn "${OPT_DIR}/bin/nvim" "$SYMLINK"
 
 sudo apt-get install -y libfuse-dev
 
+echo
+echo "Done. Current nvim:"
+"$SYMLINK" --version | head -n 2
+
 ####################
 # install deno
 ####################
