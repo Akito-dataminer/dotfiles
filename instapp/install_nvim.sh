@@ -10,17 +10,20 @@ NVIM_ASSET=${NVIM_NAME}".tar.gz"
 NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | \
   grep -oP "browser_download_url.*\Khttps://.*${NVIM_ASSET}" | head -n1)
 
+OPT_DIR="/opt/nvim-linux-x86_64"
+SYMLINK="/usr/local/bin/nvim"
+
 curl -LO $NVIM_URL
 
-tar -zxf $NVIM_ASSET
-cp -r ${NVIM_NAME}/bin/nvim /usr/bin/nvim
-cp -r ${NVIM_NAME}/lib/nvim /usr/local/lib/nvim
-cp -r ${NVIM_NAME}/share/nvim /usr/local/share/nvim
+sudo rm -rf "$OPT_DIR"
+sudo tar -C /opt -xzf "$NVIM_ASSET"
+
+sudo mkdir -p "$(dirname "$SYMLINK")"
 rm -rf ${NVIM_NAME}
 rm ${NVIM_ASSET}
 
 if [ ! -f /usr/local/bin/nvim ]; then
-  ln -s /usr/bin/nvim /usr/local/bin/nvim
+  sudo ln -sn "${OPT_DIR}/bin/nvim" "$SYMLINK"
 fi
 
 sudo apt-get install -y libfuse-dev
