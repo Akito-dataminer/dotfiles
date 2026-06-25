@@ -125,3 +125,12 @@ alias ll='ls -l'
 alias lal='ls -al'
 alias ~='cd ~'
 eval "$(gh completion -s bash)"
+
+# ls colors.
+if [ -x /usr/bin/dircolors ]; then
+    if [ -r ~/.dircolors ]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+fi
